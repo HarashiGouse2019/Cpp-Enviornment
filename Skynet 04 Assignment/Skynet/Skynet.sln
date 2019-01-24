@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Skynet 04 Assignment", "Skynet 04 Assignment\Skynet 04 Assignment.vcxproj", "{A86F4207-1D4A-47F7-A382-04A21B0193DB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A86F4207-1D4A-47F7-A382-04A21B0193DB}.Debug|x64.ActiveCfg = Debug|x64
+		{A86F4207-1D4A-47F7-A382-04A21B0193DB}.Debug|x64.Build.0 = Debug|x64
+		{A86F4207-1D4A-47F7-A382-04A21B0193DB}.Debug|x86.ActiveCfg = Debug|Win32
+		{A86F4207-1D4A-47F7-A382-04A21B0193DB}.Debug|x86.Build.0 = Debug|Win32
+		{A86F4207-1D4A-47F7-A382-04A21B0193DB}.Release|x64.ActiveCfg = Release|x64
+		{A86F4207-1D4A-47F7-A382-04A21B0193DB}.Release|x64.Build.0 = Release|x64
+		{A86F4207-1D4A-47F7-A382-04A21B0193DB}.Release|x86.ActiveCfg = Release|Win32
+		{A86F4207-1D4A-47F7-A382-04A21B0193DB}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B04BAD6C-C9BF-4D07-8789-F57F886E57AB}
+	EndGlobalSection
+EndGlobal
