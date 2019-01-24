@@ -5,14 +5,15 @@ using namespace std;
 
 int main() {
 
-	int t = 23;
-	int m = 87;
-
-
 	cout << "HK Software" << endl;
+	//This is the key algorithm we will use. It is called Binary Search.
 
-	t > m ? cout << "Yes!!!" << endl : cout << "No!!!" << endl;
-
+	//Keeping this blank for now.
+	while (true) {
+		for (;;) {}
+	}
+	
+	// int targetLocation Prediction = ((searchGridHighNumber - searchGridLowNumber) / 2) + searchGridLowNumber;
 	system("pause");
 
 	return 0;
