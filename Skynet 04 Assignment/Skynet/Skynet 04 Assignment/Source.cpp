@@ -5,8 +5,8 @@ using namespace std;
 
 int main() {
 
-	int searchGridHighNumber = 64;
-	int searchGridLowNumber = 1;
+	//int searchGridHighNumber = 64, 31;
+	//int searchGridLowNumber = 1, 17
 
 	cout << "HK Software" << endl;
 	//This is the key algorithm we will use. It is called Binary Search.
