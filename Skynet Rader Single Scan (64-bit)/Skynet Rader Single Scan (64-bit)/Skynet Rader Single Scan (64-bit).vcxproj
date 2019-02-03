@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{A86F4207-1D4A-47F7-A382-04A21B0193DB}</ProjectGuid>
-    <RootNamespace>Skynet04Assignment</RootNamespace>
+    <ProjectGuid>{249B18D7-BA23-44A4-A0EF-45462BF9725F}</ProjectGuid>
+    <RootNamespace>SkynetRaderSingleScan64bit</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -115,8 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Skynet Radar User Defined Scan %2864-Bit%29 .cpp" />
-    <ClCompile Include="Skynet Rader Single Scan %2864-Bit%29.cpp" />
+    <ClCompile Include="..\..\Skynet 04 Assignment\Skynet\Skynet 04 Assignment\Skynet Rader Single Scan (64-Bit).cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

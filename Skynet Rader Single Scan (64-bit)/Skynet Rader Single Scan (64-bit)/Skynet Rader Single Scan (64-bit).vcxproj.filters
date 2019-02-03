@@ -15,10 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Skynet Rader Single Scan %2864-Bit%29.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Skynet Radar User Defined Scan %2864-Bit%29 .cpp">
+    <ClCompile Include="..\..\Skynet 04 Assignment\Skynet\Skynet 04 Assignment\Skynet Rader Single Scan (64-Bit).cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

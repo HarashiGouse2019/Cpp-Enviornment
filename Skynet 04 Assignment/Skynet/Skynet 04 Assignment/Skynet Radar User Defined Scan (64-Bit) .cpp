@@ -1,3 +1,8 @@
+///Skynet Radar User Defined Scan(64-Bit)
+/*This program will allow the user to choose which kind of search to
+run.
+You are allowed to define a sector size of your choosing*/
+
 #include <iostream>
 #include <cstdlib>
 #include <time.h>
@@ -567,6 +572,13 @@ int main() {
 				}
 			}
 		}
+
+		/*cout << "Through a Binary Search, " << binaryCount << " predications has been made" << endl;
+		cout << "Through a Linear Search, " << linearCount << " predications has been made" << endl;
+		cout << "Through a Random Search, " << randomCount << " predications has been made" << endl;
+		cout << "Through a Human Search, " << humanCount << " predications has been made" << endl;*/
+
+		NEWLINE;
 
 		cout << "Continue Search? \n"
 			<< "1 - Yes \n"
