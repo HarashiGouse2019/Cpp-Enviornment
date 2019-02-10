@@ -8,52 +8,81 @@ before the entire scan initiates.*/
 #include <iostream>
 #include <cstdlib>
 #include <time.h>
+#include <chrono>
 
 using namespace std;
 
 //I used a #define preprocessor just so I can do the lines without always holding the "=" key
 //and they can always be a constant amount. Using preprocessors are so much better!!!
 
-#define BREAKLINE cout << "==================================================" << endl;
-#define WAIT cout << "(......)" << endl;
-#define NEWLINE cout << "\n" << endl;
-#define BINARY cout << "Binary Search Initializing..." << endl;
+#define BREAKLINE cout << "==================================================" << endl; //Prints out lines to divide 
+																						//the words displayed on the
+																						//console without me holding
+																						//the same key for a long time.
+#define WAIT cout << "(......)" << endl; //This is used for the random search scan;
+										//I could of used the BREAKLINE preprocessor for this
+										//but I ended up making two seperate cpp files
+#define NEWLINE cout << "\n" << endl; //Prints me a new line for me;
+
+#define BINARY cout << "Binary Search Initializing..." << endl; 
 #define LINEAR cout << "Linear Search Initializing..." << endl;
 #define RANDOM cout << "Random Search Initializing..." << endl;
 #define HUMAN cout << "Human Search Initializing..." << endl;
+
+//Each time before it enters a new while loop, some of these defined identifiers will be typed into this
+//code, telling you which one is 
 
 int main() {
 
 	//We'll add some flair into this good! We'll define a grid inputted by the user that is greater or equal to 8 squared
 	//So they can have a bigger sector to learn for the enemy, and I find that very interesting!!!
 
-	//So from here, we'll create a new variable (and we'll simply call it defineSectorSize)
+	//This single variable will be used for our while loop. After the program ask
+	//whether we want to continue or not, if we say no, it'll turn this boolean false,
+	//meaing we jump out of the while loop.
 	bool isProgramRunning = true;
 
 	while (isProgramRunning) {
-		int defineSectorSize,
-			sectorArea,
-			searchGridHighNumber,
-			searchGridLowNumber,
-			targetLocationPrediction,
-			targetLocationPredictionCounter,
-			enemyLocation,
-			varContinue,
-			binaryCount = 0,
-			linearCount = 0,
-			randomCount = 0,
-			humanCount = 0;
-		int searchPattern = NULL;
+
+		int defineSectorSize /*Used for the user to type in the size of the sector (8 x 8 or 16 x 16) */,
+
+			sectorArea /*This variable will store the defined sector size and muliplies itself to get the area*/,
+
+			searchGridHighNumber /*This will be set to equal the area of the sector*/,
+
+			searchGridLowNumber /* This however will always be 1*/,
+
+			targetLocationPrediction /*We'll store certain numbers based on the kind of search we are doing.
+									 Depending on the search, this variable may have to reset.*/,
+
+			targetLocationPredictionCounter /*This records how many predictions a give search has made.
+											this variable with reset itself before we enter another while loop.
+											After every loop, we'll take this variable and store it in another
+											variable that has a global scope, so that it may be used to display
+											the amount of predictions each search pattern made.*/,
+
+			enemyLocation /*Everytime you start/continue the program, this will be assigned to a new random number
+						  between one and the sector area*/,
+
+			varContinue = 0 /*After the whole program runs, we'll be asked to run it again. This is used to decide
+						rather the user would like to continue the simulation or not*/,
+
+			binaryCount = 0 /*After the while loop for the Binary Search, the amount of predictions made during the
+							simulation will be stored here.*/,
+
+			linearCount = 0 /*After the while loop for the Linear Search, the amount of predictions made during the
+							simulation will be stored here.*/,
+
+			randomCount = 0 /*After the while loop for the Random Search, the amount of predictions made during the
+							simulation will be stored here.*/,
+
+			humanCount = 0 /*After the while loop for a Human Defined Search, the amount of predictions made during the
+							simulation will be stored here.*/;
 
 		bool isTargetFoundBinary = false,
 			isTargetFoundLinear = false,
 			isTargetFoundRandom = false,
 			isTargetFoundHuman = false;
-
-
-
-		varContinue = 0;
-		searchPattern = NULL;
 
 		cout << "HK Software" << endl;
 
@@ -64,7 +93,7 @@ int main() {
 
 	getSectorSize:
 		cout << "Define the size of the sector (Sector size can not be smaller than four)" << endl;
-		cin >> defineSectorSize;
+		cin >> defineSectorSize; //We get input from the user of the desired sector size
 
 		//We'll then check if the input was a valid one using an if statement
 		if (defineSectorSize < 4) {
@@ -76,13 +105,13 @@ int main() {
 		}
 		else {
 
-			srand(time(0));
+			srand(time(0)); //This will help us generate a random number for our simulation
 
 			NEWLINE;
 
 			cout << "Initializing Single Scan" << endl;
 
-
+			//We print a new line, and we begin our Binary Search
 			NEWLINE; BINARY;
 
 			//We'll save the area of the sector in a seperate variable
@@ -97,7 +126,7 @@ int main() {
 				targetLocationPrediction,
 				enemyLocation = rand() % searchGridHighNumber - searchGridLowNumber;
 
-			//This is the key algorithm we will use. It is called Binary Search.
+			//This is then were everything is logged onto the console.
 
 			cout << "Generate Random enemy location on "
 				<< defineSectorSize
@@ -122,20 +151,17 @@ int main() {
 
 			BREAKLINE;
 
-			targetLocationPredictionCounter = 1;
+			targetLocationPredictionCounter = 1; /*This will be set to one so when the number ping is displayed,
+												 the value always start at one.*/
 
-			//Keeping this blank for now.
+			//The Binary Search begins here!
 			while (isTargetFoundBinary == false) {
 
-
-
-				//Software selection target location predicition in flyover hunt for enemy.
-				cout << "Skynet HK-Aerial Radar sending out ping #"
+				cout << "Skynet HK-Aerial Radar sending out ping #" // Radar Ping of enemy location
 					<< targetLocationPredictionCounter
 					<< endl;
-
-				// Radar Ping of enemy location
-
+				
+				//This is the Binary Search Algorithm that we will use for this while loop.
 				targetLocationPrediction = ((searchGridHighNumber - searchGridLowNumber) / 2) + searchGridLowNumber;
 
 				// In this simulation the ping tells us
@@ -186,6 +212,8 @@ int main() {
 
 				}
 				else {
+
+					//Tell us of the results when the enemy is found!!!
 					cout << "Enemy was hiding at Sector #"
 						<< enemyLocation
 						<< endl;
@@ -208,14 +236,15 @@ int main() {
 					isTargetFoundBinary = true;
 
 
-					binaryCount = targetLocationPredictionCounter;
+					binaryCount = targetLocationPredictionCounter; /*binaryCount now represents how many predictions
+																   this search had made.*/
 
 					NEWLINE; BREAKLINE; NEWLINE;
 
 				}
 			}
-			//This is the key algorithm we will use. It is called Binary Search.
 			
+			//We now begin our Linear Search
 			LINEAR;
 
 			cout << "Generate Random enemy location on "
@@ -248,7 +277,8 @@ int main() {
 			searchGridHighNumber = defineSectorSize * defineSectorSize,
 				searchGridLowNumber = 1,
 				//searchGridLowNumber while always equal to 1 no matter what!!!
-			targetLocationPredictionCounter = 1;
+
+			targetLocationPredictionCounter = 1; //The amount of predictions is reset back to one in prep for the next loop.
 
 			while (isTargetFoundLinear == false) {
 				
@@ -259,7 +289,9 @@ int main() {
 
 				// Radar Ping of enemy location
 
-				targetLocationPrediction = searchGridLowNumber++;
+				targetLocationPrediction = searchGridLowNumber++; //Since it's linear, we'll be going increments of one.
+																//I know the low number is always 1, so I used that for this
+																//expression.
 
 
 				// This simulation will be a bit different
@@ -287,7 +319,8 @@ int main() {
 
 					isTargetFoundLinear = true;
 
-					linearCount = targetLocationPredictionCounter;
+					linearCount = targetLocationPredictionCounter; /*This time, the amount of predictions made
+																   going through a linear search is recorded here.*/
 
 					NEWLINE; BREAKLINE; NEWLINE;
 
@@ -297,8 +330,8 @@ int main() {
 					WAIT;
 				}
 			}
-			//This is the key algorithm we will use. It is called Binary Search.
-
+			
+			//We now begin our Random Search
 			RANDOM;
 
 			cout << "Generate Random enemy location on "
@@ -330,7 +363,8 @@ int main() {
 			searchGridHighNumber = defineSectorSize * defineSectorSize,
 				searchGridLowNumber = 1,
 				//searchGridLowNumber while always equal to 1 no matter what!!!
-			targetLocationPredictionCounter = 1;
+
+			targetLocationPredictionCounter = 1; //Again! We reset!
 
 			while (isTargetFoundRandom == false) {
 				//Software selection target location predicition in flyover hunt for enemy.
@@ -393,14 +427,15 @@ int main() {
 
 					isTargetFoundRandom = true;
 
-					randomCount = targetLocationPredictionCounter;
+					randomCount = targetLocationPredictionCounter; /*The amount of predictions made with the
+																   Random search is now recorded!*/
 
 					NEWLINE; BREAKLINE; NEWLINE;
 
 				}
 			}
 
-			//This is the key algorithm we will use. It is called Binary Search.
+			//We now begin our User Defined Search
 			HUMAN;
 
 				cout << "Generate Random enemy location on "
@@ -432,7 +467,8 @@ int main() {
 				searchGridHighNumber = defineSectorSize * defineSectorSize,
 					searchGridLowNumber = 1,
 					//searchGridLowNumber while always equal to 1 no matter what!!!
-				targetLocationPredictionCounter = 1;
+
+				targetLocationPredictionCounter = 1; //Finally, we reset our counter for the last time!!!
 
 			while (isTargetFoundHuman == false) {
 				//Software selection target location predicition in flyover hunt for enemy.
@@ -504,6 +540,9 @@ int main() {
 			}
 		}
 
+		/*Now that the entire scan has been complete, it's time to colloct our data.
+		We grab our 4 variables, and we'll have the printed on the screen.
+		The program will tell and show how many predictions each search has made. */
 		cout << "Through a Binary Search, " << binaryCount << " predications has been made." << endl;
 				cout << "Through a Linear Search, " << linearCount << " predications has been made" << endl;
 				cout << "Through a Random Search, " << randomCount << " predications has been made" << endl;
