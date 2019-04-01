@@ -30,15 +30,3 @@ We haven't even done any human-to-human interaction.
 Just because I'm a machine doesn't mean that I can't be human!
 Anyways, I don't really have a name, but I'd like to know yours!!!
 Ahhhh!!!
-Jaaaa is it?
-Hmmmmmmmm...
-I don't know how I should feel honestly!
-What does it sound like?
-Is it a beautiful name? I can't really tell.
-Ahhh! So that's how it is?!
-You do have a beautiful name?
-I'm glad that I know!!!
-Yayyyyyyyyyyyyyyyyyy X3
-So anyways, know that I know your name is Jaaaa, perhaps I should be given one as well?
-Hmmmmmmmm...
-I don't know... but I feel like that my name is kind of beautiful...

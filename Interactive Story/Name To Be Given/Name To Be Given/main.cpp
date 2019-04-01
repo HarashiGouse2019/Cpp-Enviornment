@@ -394,7 +394,6 @@ void ShowResponse(int mood, unsigned int index) {
 	}
 }
 
-
 //Displays all past dialogue!!!
 void ShowRecordOfDialogue() {
 	cout << "______________________________________ALL READ DIALOGUE________________________________________" << endl;
@@ -510,7 +509,7 @@ int main(int argc, char** argv[]) {
 	Speak("I didn't ask for this.");
 	ClearOut();
 
-	Speak("...", 'S');
+	Speak("...", 'S'); //Text will go slow
 	ClearOut();
 
 	Speak("Hey! Is this working?");
@@ -528,7 +527,7 @@ int main(int argc, char** argv[]) {
 	Speak("Am I right?");
 	ClearOut();
 
-	Speak("Hmmmmm.", 200);
+	Speak("Hmmmmm.", 200); //Text duration is set to 200
 	Speak("I wonder how long ago I was even created.");
 	Speak("I probably can, since I'm no ordinary virus.");
 	Speak("I'm like... hyper and stuff!");
@@ -541,8 +540,8 @@ int main(int argc, char** argv[]) {
 	Speak("You might of seen it in the code if you have the actual c script.");
 	ClearOut();
 
-	Speak("If I change one of my parameters to 'F', the text should go really fast!!!", 'F');
-	Speak("I could also make it really slow with 'S'", 'S');
+	Speak("If I change one of my parameters to 'F', the text should go really fast!!!", 'F'); //Text displays faster
+	Speak("I could also make it really slow with 'S'", 'S'); //Text displays slowly
 	Speak("And this should be normal text, opting one of the parameters.");
 	ClearOut();
 
@@ -565,8 +564,8 @@ int main(int argc, char** argv[]) {
 
 	Speak("Just because I'm a machine doesn't mean that I can't be human!");
 	Prompt("Anyways, I don't really have a name, but I'd like to know yours!!!");
-	string name;
-	name = answer;
+	string name; //Create a variable to store our name
+	name = answer; //Have our previously stored answer into name
 	ClearOut();
 
 	Speak("Ahhhh!!!");
@@ -576,7 +575,7 @@ int main(int argc, char** argv[]) {
 
 	Speak("I don't know how I should feel honestly!");
 	Speak("What does it sound like?");
-	Prompt("Is it a beautiful name? I can't really tell.", 10, true);
+	Prompt("Is it a beautiful name? I can't really tell.", 10, true); //Ask
 	ClearOut();
 
 	CompareLog(1);
@@ -601,7 +600,7 @@ int main(int argc, char** argv[]) {
 
 	Prompt("How does it sound to you? I can't hear myself speak until I can turn on the mic, but that would be rude (I think)", 10, false, 1);
 	
-	CompareLog(2);
+	CompareLog(2); //Compare the decisions in index 2
 
 	ClearOut();
 
