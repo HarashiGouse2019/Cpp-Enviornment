@@ -70,11 +70,10 @@ int main(int argc, char** argv[]) {
 	srand(time(NULL)); //Create our random seed;
 
 	DisplayText("Welcome Comrade!!!");
-	DisplayText("There has been an enemy sighted nearby.");
+	DisplayText("There's an enemy somewhere on the sector.");
+	DisplayText("Pursuit him!!!");
 
 	Enemy enemy; //Create an instance of our Enemy class
-
-	DisplayText("The enemy is sighted at: "); /*Grab the enemy's coordinate. This will only be displayed once*/ GetPosition(enemy.coord_x, enemy.coord_y);
 
 	GiveTutorial(); //Print out our tutorial
 	
@@ -89,100 +88,111 @@ int main(int argc, char** argv[]) {
 	bool MATCH_X = false; //Set a boolean to check if our x coordinates match
 	bool MATCH_Y = false; //Set a boolean to check if our y coordinates match
 
-	//The Actual Movement Begins
-	int c = 0; //Initialize c to toggle from 0 to 1 when we send input
-	while (1)
-	{
-		c = 0;
-		//We set if the input value is true through a switch...case statement
-		switch ((c = _getch())) {
-		case KEY_UP:
-			MATCH_Y = false;
-			system("CLS"); //Clear the console
-			cout << "--- CURRENTLY IN PURSUIT---" << endl; //Print out CURRENTLY IN PURSUIT
-			*ptry += unitSize; //MoveUp
-			Beep(((max(*ptry, enemy.coord_y) - min(*ptry, enemy.coord_y)) % 0x7FFF), 0x64); //Send a sound to let us know that we are getting closer
-			break;
+	bool gameOn = true;
+	while (gameOn) {
+		//The Actual Movement Begins
+		int c = 0; //Initialize c to toggle from 0 to 1 when we send input
+		while (1)
+		{
+			c = 0;
+			//We set if the input value is true through a switch...case statement
+			switch ((c = _getch())) {
+			case KEY_UP:
+				MATCH_Y = false;
+				system("CLS"); //Clear the console
+				cout << "--- CURRENTLY IN PURSUIT---" << endl; //Print out CURRENTLY IN PURSUIT
+				*ptry += unitSize; //MoveUp
+				Beep(((max(*ptry, enemy.coord_y) - min(*ptry, enemy.coord_y)) % 0x7FFF), 0x64); //Send a sound to let us know that we are getting closer
+				break;
 
-		case KEY_DOWN:
-			MATCH_Y = false;
-			system("CLS"); //Clear the console
-			cout << "--- CURRENTLY IN PURSUIT---" << endl; //Print out CURRENTLY IN PURSUIT
-			*ptry -= unitSize; //MoveDown
-			Beep(((max(*ptry, enemy.coord_y) - min(*ptry, enemy.coord_y)) % 0x7FFF), 0x64); //Send a sound to let us know that we are getting closer
-			break;
+			case KEY_DOWN:
+				MATCH_Y = false;
+				system("CLS"); //Clear the console
+				cout << "--- CURRENTLY IN PURSUIT---" << endl; //Print out CURRENTLY IN PURSUIT
+				*ptry -= unitSize; //MoveDown
+				Beep(((max(*ptry, enemy.coord_y) - min(*ptry, enemy.coord_y)) % 0x7FFF), 0x64); //Send a sound to let us know that we are getting closer
+				break;
 
-		case KEY_LEFT:
-			MATCH_X = false;
-			system("CLS"); //Clear the console
-			cout << "--- CURRENTLY IN PURSUIT---" << endl; //Print out CURRENTLY IN PURSUIT
-			*ptrx -= unitSize; //MoveLeft
-			Beep(((max(*ptrx, enemy.coord_x) - min(*ptrx, enemy.coord_x)) % 0x7FFF), 0x64); //Send a sound to let us know that we are getting closer
-			break;
+			case KEY_LEFT:
+				MATCH_X = false;
+				system("CLS"); //Clear the console
+				cout << "--- CURRENTLY IN PURSUIT---" << endl; //Print out CURRENTLY IN PURSUIT
+				*ptrx -= unitSize; //MoveLeft
+				Beep(((max(*ptrx, enemy.coord_x) - min(*ptrx, enemy.coord_x)) % 0x7FFF), 0x64); //Send a sound to let us know that we are getting closer
+				break;
 
-		case KEY_RIGHT:
-			MATCH_X = false;
-			system("CLS"); //Clear the console
-			cout << "--- CURRENTLY IN PURSUIT---" << endl; //Print out CURRENTLY IN PURSUIT
-			*ptrx += unitSize; //MoveRight
-			Beep(((max(*ptrx, enemy.coord_x) - min(*ptrx, enemy.coord_x)) % 0x7FFF), 0x64); //Send a sound to let us know that we are getting closer
-			break;
+			case KEY_RIGHT:
+				MATCH_X = false;
+				system("CLS"); //Clear the console
+				cout << "--- CURRENTLY IN PURSUIT---" << endl; //Print out CURRENTLY IN PURSUIT
+				*ptrx += unitSize; //MoveRight
+				Beep(((max(*ptrx, enemy.coord_x) - min(*ptrx, enemy.coord_x)) % 0x7FFF), 0x64); //Send a sound to let us know that we are getting closer
+				break;
 
-		case SPACE:
-			system("CLS");
-			SHOW_POS; //Beep 2 times to get our current position
-			cout << "\nCurrent Position: "; //Print out
-			GetPosition(*ptrx, *ptry);      //our current position
-			break;
+			case SPACE:
+				system("CLS");
+				SHOW_POS; //Beep 2 times to get our current position
+				cout << "\nCurrent Position: "; //Print out
+				GetPosition(*ptrx, *ptry);      //our current position
+				break;
 
-		case RETURN:
-			system("CLS"); //Clear Console
-			ALT_UNIT; //Beep 2 time to allow us to change our unit
-			unitSize = ChangeUnitSize(unitSize); //Gather input
-			break;
+			case RETURN:
+				system("CLS"); //Clear Console
+				ALT_UNIT; //Beep 2 time to allow us to change our unit
+				unitSize = ChangeUnitSize(unitSize); //Gather input
+				break;
 
-		default:
-			cout << endl << "\b" << endl;  //Backspace
-			break;
+			default:
+				cout << endl << "\b" << endl;  //Backspace
+				break;
 
-		}
-
-		//If the x coordinates match
-		if (MATCH_X == false) {
-			if (*ptrx == enemy.coord_x) {
-				MATCH; //Make a noise
-				MATCH_X = true; //Set MATCH_X to TRUE
 			}
-			else {
-				MATCH_X = false; //Set MATCH_X to FALSE
+
+			//If the x coordinates match
+			if (MATCH_X == false) {
+				if (*ptrx == enemy.coord_x) {
+					MATCH; //Make a noise
+					MATCH_X = true; //Set MATCH_X to TRUE
+				}
+				else {
+					MATCH_X = false; //Set MATCH_X to FALSE
+				}
+			}
+
+			//If the y coordinates match
+			if (MATCH_Y == false) {
+				if (*ptry == enemy.coord_y) {
+					MATCH; //Make a noise
+					MATCH_Y = true; //SET MATCH_Y to TRUE
+				}
+				else {
+					MATCH_Y = false; //SET MATCH_Y to FALSE
+				}
+			}
+
+			//If both x and y coordinates are matching
+			if (*ptrx == enemy.coord_x && *ptry == enemy.coord_y) {
+				if (sector.sectorSize == 10000) {
+					system("CLS");
+					cout << "---!!!PURSUIT COMPLETE!!!---" << endl; //Print out that we have completed our pursuit!!!
+					DisplayText("You've done it comrade!!!");
+					DisplayText("Great Work!!!");
+					gameOn = false;
+					system("pause");
+					return 0;
+				}
+				else {
+					MATCH; MATCH_X = false; MATCH_Y = false; //Make a noise and set both MATCH_X, and MATCH_Y to FALSE
+					sector.sectorSize *= 10;
+					DisplayText("You found out that the enemy located at coordinates: "); /*Grab the enemy's coordinate. This will only be displayed once*/ GetPosition(enemy.coord_x, enemy.coord_y);
+					enemy.coord_x = rand() % sector.sectorSize; //Regenerate a new location on the x coordinate
+					enemy.coord_y = rand() % sector.sectorSize; //Regenerate a new location on the y coordinate
+					DisplayText("He spots you, and runs away!!!"); //A message to use
+					DisplayText("Continue the pursuit!!!");
+				}
 			}
 		}
-
-		//If the y coordinates match
-		if (MATCH_Y == false) {
-			if (*ptry == enemy.coord_y) {
-				MATCH; //Make a noise
-				MATCH_Y = true; //SET MATCH_Y to TRUE
-			}
-			else {
-				MATCH_Y = false; //SET MATCH_Y to FALSE
-			}
-		}
-
-		//If both x and y coordinates are matching
-		if (*ptrx == enemy.coord_x && *ptry == enemy.coord_y) {
-			MATCH; MATCH_X = false; MATCH_Y = false; //Make a noise and set both MATCH_X, and MATCH_Y to FALSE
-			sector.sectorSize *= 10;
-			enemy.coord_x = rand() % sector.sectorSize; //Regenerate a new location on the x coordinate
-			enemy.coord_y = rand() % sector.sectorSize; //Regenerate a new location on the y coordinate
-			DisplayText("You've encountered the enemy, but he got away!"); //A message to use
-			DisplayText("The enemy's new position is: "); GetPosition(enemy.coord_x, enemy.coord_y); //Give us the enemy's new position
-		}
-
 	}
-	
-	system("pause");
-	return 0;
 }
 
 //Gets the position of a certain object (whether it'd be me, or the enemy)
